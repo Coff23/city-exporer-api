@@ -5,7 +5,6 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
-let weatherData = require('./data/weather.json');
 
 // variable of app === server
 const app = express();
@@ -19,8 +18,8 @@ app.listen(PORT, () => console.log(`port: ${PORT}`));
 app.get('/', (req, res) => {
   res.status(200).send('Welcome to my server!');
 });
-
-app.get('/weather', (req, res, next) => {
+// HTTP: http://api.weatherbit.io/v2.0/forecast/daily?key={}units={I}
+app.get('/forecast', (req, res, next) => {
 
   try {
     let lat = req.query.lat;
