@@ -21,15 +21,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/weather', (req, res, next) => {
-  
+
   try {
     let lat = req.query.lat;
     let lon = req.query.lon;
     let searchQuery = req.query.searchQuery;
-    
+
+    console.log('lat', lat, 'lon', lon, 'searchQuery', searchQuery);
+
     class Forecast {
       constructor(cityObj) {
-        // this.description = `Low of ${cityObj.data[0].low_temp}, high of ${cityObj.data[0].high_temp} with ${cityObj.data[0].weather.description}`;
+        this.description = `Low of ${cityObj.data[0].low_temp}, high of ${cityObj.data[0].high_temp} with ${cityObj.data[0].weather.description}`;
         this.valid_date = cityObj.data[0].valid_date;
       }
     }
