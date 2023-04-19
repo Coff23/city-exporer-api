@@ -29,15 +29,9 @@ app.get('/weather', (req, res, next) => {
 
     console.log('lat', lat, 'lon', lon, 'searchQuery', searchQuery);
 
-    class Forecast {
-      constructor(cityObj) {
-        this.description = `Low of ${cityObj.data[0].low_temp}, high of ${cityObj.data[0].high_temp} with ${cityObj.data[0].weather.description}`;
-        this.valid_date = cityObj.data[0].valid_date;
-      }
-    }
 
     let foundCity = weatherData.find(city => (city.city_name === searchQuery) || (city.lon === lon) || (city.lat === lat));
-    let dataToSend = new Forecast(foundCity);
+    let dataToSend = foundCity.data.map(newWeather => new Forecast(newWeather));
     res.status(200).send(dataToSend);
 
   } catch (error) {
@@ -45,3 +39,12 @@ app.get('/weather', (req, res, next) => {
   }
 
 });
+
+class Forecast {
+  constructor(cityObj) {
+    this.date = cityObj.datetime;
+    this.description = cityObj.weather.description;
+    this.low_temp = cityObj.low_temp;
+    this.high_temp = cityObj.high_temp;
+  }
+}
