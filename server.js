@@ -5,8 +5,6 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
-// const axios = require('axios');
-// variable of app === server
 const app = express();
 const { getWeather } = require('./modules/weather');
 const { getMovies } = require('./modules/movies');
