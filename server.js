@@ -26,7 +26,7 @@ app.get('/forecast', async (req, res, next) => {
     let lon = req.query.lon;
     let searchQuery = req.query.searchQuery;
 
-    let url = `http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.REACT_APP_WEATHER_API_KEY}&units=I&lat=${lat}&lon=${lon}`;
+    let url = `http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&units=I&lat=${lat}&lon=${lon}`;
 
     let foundCity = await axios.get(url);
 
@@ -45,7 +45,7 @@ app.get('/movies', async (req, res, next) => {
     let city = req.query.city;
     console.log(city);
 
-    let movieUrl = `http://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${city}`;
+    let movieUrl = `http://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${city}`;
 
     let foundMovie = await axios.get(movieUrl);
 
